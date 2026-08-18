@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0A2540" />
+<title>The PRISM IDR Platform — Products</title>
+<meta name="description" content="PRISM IDR Platform: eight integrated modules and a ten-agent AI case team for No Surprises Act dispute management. AI prepares, rules control, people approve." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PRISM design tokens — extracted verbatim from prism.inc
+   (static/css/main.4e08b093.css), so this preview is
+   pixel-consistent with the live site's brand.
+   ============================================================ */
+:root{
+  --navy:#0A2540;          /* brand primary (button fill on live site) */
+  --navy-hover:#0F3A66;
+  --navy-deep:#071A2E;
+  --blue:#2563EB;          /* accent — used for numerals + rules only */
+  --blue-soft:#EFF6FF;
+  --ink:#0F172A;           /* slate-900 */
+  --ink-2:#334155;         /* slate-700 */
+  --muted:#475569;         /* slate-600 */
+  --muted-2:#64748B;       /* slate-500 */
+  --faint:#94A3B8;         /* slate-400 — hairlines/dividers only, never text */
+  --numeral:#64748B;       /* slate-500 — 4.76:1 on white, small numerals       */
+  --numeral-xl:#8695A9;    /* 3.05:1 on white — large-scale display numerals    */
+  --line:#E2E8F0;          /* slate-200 */
+  --line-2:#CBD5E1;        /* slate-300 */
+  --wash:#F1F5F9;          /* slate-100 */
+  --wash-2:#F8FAFC;        /* slate-50 */
+  --white:#FFFFFF;
+  --ok:#047857;            /* emerald-700  — automatic preparation */
+  --gate:#B45309;          /* amber-700    — recorded approval */
+  --stop:#BE123C;          /* rose-700     — never autonomous */
+  --radius:0.375rem;
+  --shell:1280px;
+  --pad:24px;
+  --display:"Outfit",ui-sans-serif,system-ui,sans-serif;
+  --body:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+@media (min-width:1024px){ :root{ --pad:32px; } }
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body{
+  margin:0; background:var(--white); color:var(--ink);
+  font-family:var(--body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+h1,h2,h3,h4{ font-family:var(--display); letter-spacing:-0.02em; margin:0; font-weight:400; }
+p{ margin:0; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+a{ color:inherit; }
+img,svg{ display:block; max-width:100%; }
+:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:2px; }
+
+.shell{ max-width:var(--shell); margin:0 auto; padding-inline:var(--pad); }
+.overline{
+  font-family:var(--body); font-size:12px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--muted-2);
+}
+.bg-grid{
+  background-image:
+    linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 0),
+    linear-gradient(180deg, rgba(15,23,42,.05) 1px, transparent 0);
+  background-size:56px 56px;
+}
+.mono{ font-family:var(--mono); font-variant-numeric:tabular-nums; }
+
+/* --- hairline grid: the Swiss rule that carries the whole page --- */
+.rule-grid{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.rule-grid > *{ background:var(--white); min-width:0; }
+
+/* --- buttons --- */
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  height:48px; padding:0 24px; border-radius:var(--radius);
+  font-family:var(--body); font-size:15px; font-weight:600; text-decoration:none;
+  border:1px solid transparent; transition:background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn svg{ width:16px; height:16px; }
+.btn-primary{ background:var(--navy); color:#fff; }
+.btn-primary:hover{ background:var(--navy-hover); }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line-2); }
+.btn-ghost:hover{ background:var(--wash); border-color:var(--muted-2); }
+.btn-invert{ background:#fff; color:var(--navy); }
+.btn-invert:hover{ background:var(--blue-soft); }
+
+/* ============================ header ============================ */
+.masthead{
+  position:sticky; top:0; z-index:50; background:rgba(255,255,255,.86);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.masthead .shell{ height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand{ display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-.01em; text-decoration:none; }
+.brand-mark{ width:26px; height:26px; }
+.nav-main{ display:none; gap:28px; font-size:14px; font-weight:500; color:var(--muted); }
+.nav-main a{ text-decoration:none; padding:4px 0; border-bottom:2px solid transparent; transition:color .2s ease, border-color .2s ease; }
+.nav-main a:hover{ color:var(--ink); }
+.nav-main a[aria-current="page"]{ color:var(--navy); border-bottom-color:var(--navy); font-weight:600; }
+.masthead .btn{ height:40px; padding:0 18px; font-size:14px; gap:0; }
+@media (min-width:900px){ .nav-main{ display:flex; } }
+@media (max-width:560px){ .masthead .btn span{ display:none; } }
+
+/* ---------- section jump rail (scroll-spy) ---------- */
+.sectionnav{
+  position:sticky; top:64px; z-index:40; background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.sectionnav ul{
+  display:flex; gap:0; overflow-x:auto; scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.sectionnav ul::-webkit-scrollbar{ display:none; }
+.sectionnav a{
+  display:block; white-space:nowrap; text-decoration:none; padding:14px 18px 12px;
+  font-size:12.5px; font-weight:600; letter-spacing:.04em; color:var(--muted-2);
+  border-bottom:2px solid transparent; transition:color .2s ease, border-color .2s ease;
+}
+.sectionnav a:first-child{ padding-left:0; }
+.sectionnav a:hover{ color:var(--ink); }
+.sectionnav a.is-active{ color:var(--navy); border-bottom-color:var(--blue); }
+@media (max-width:900px){ .sectionnav a:first-child{ padding-left:var(--pad); } }
+
+/* ============================ hero ============================ */
+.hero{ position:relative; background:var(--white); overflow:hidden; }
+.hero .bg-grid{ position:absolute; inset:0; opacity:.6; pointer-events:none; }
+.hero .shell{ position:relative; padding-top:80px; padding-bottom:64px; }
+@media (min-width:640px){ .hero .shell{ padding-top:112px; padding-bottom:80px; } }
+.hero h1{
+  font-size:clamp(2.75rem,7vw,4.5rem); font-weight:300; line-height:1.05;
+  margin-top:16px; max-width:18ch; color:var(--ink);
+}
+.hero-lede{ margin-top:32px; font-size:18px; line-height:1.65; color:var(--muted); max-width:60ch; }
+.hero-actions{ margin-top:40px; display:flex; flex-wrap:wrap; gap:12px; }
+.hero-stats{ margin-top:56px; }
+@media (min-width:640px){ .hero-stats{ grid-template-columns:repeat(4,1fr); } }
+.hero-stats .cell{ padding:24px; }
+.hero-stats .k{ font-family:var(--display); font-size:34px; font-weight:300; color:var(--navy); line-height:1; font-variant-numeric:tabular-nums; }
+.hero-stats .v{ margin-top:10px; font-size:13px; color:var(--muted); line-height:1.5; }
+
+/* ============================ generic section ============================ */
+.section{ padding-block:80px; scroll-margin-top:120px; }
+@media (min-width:640px){ .section{ padding-block:104px; } }
+.section--wash{ background:var(--wash-2); border-block:1px solid var(--line); }
+.section--navy{ background:var(--navy); color:#fff; }
+.section--navy .overline{ color:#93B4E3; }
+.section--navy h2{ color:#fff; }
+.section--navy .section-lede{ color:#CBD8EA; }
+.section-head{ max-width:64ch; }
+.section-head h2{
+  font-size:clamp(2rem,4.2vw,3rem); font-weight:300; line-height:1.1;
+  margin-top:16px; color:var(--ink);
+}
+.section-lede{ margin-top:20px; font-size:17px; color:var(--muted); line-height:1.65; max-width:62ch; }
+/* Editorial two-column section head: statement left, argument right. */
+@media (min-width:1024px){
+  .section-head{ max-width:none; display:grid; grid-template-columns:7fr 5fr; column-gap:64px; align-items:end; }
+  .section-head .overline{ grid-column:1 / -1; }
+  .section-head .section-lede{ margin-top:0; padding-bottom:8px; max-width:46ch; }
+}
+/* Inverted sections must win over the base .section-head colours above. */
+.section--navy .section-head h2,
+.section--navy .close h2{ color:#fff; }
+.section--navy .section-head .section-lede{ color:#CBD8EA; }
+.grid-2{ display:grid; gap:1px; grid-template-columns:1fr; }
+@media (min-width:768px){ .cols-2{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:768px){ .cols-3-md2{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .cols-3-md2{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:768px){ .cols-4-md2{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .cols-4-md2{ grid-template-columns:repeat(4,1fr); } }
+@media (min-width:640px){ .cols-5-sm2{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .cols-5-sm2{ grid-template-columns:repeat(5,1fr); } }
+@media (min-width:768px){ .cols-6-md2{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .cols-6-md2{ grid-template-columns:repeat(3,1fr); } }
+
+/* reveal-on-scroll (disabled under reduced motion) */
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.is-in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+
+/* ============================ operating principle ============================ */
+.principle .cell{ padding:36px 32px; }
+.principle .tag{
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--display);
+  font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+}
+.principle .tag svg{ width:18px; height:18px; }
+.principle .cell h3{ margin-top:20px; font-size:22px; font-weight:500; }
+.principle .cell p{ margin-top:12px; font-size:14.5px; color:var(--muted); line-height:1.65; }
+.t-ai{ color:var(--blue); } .t-rules{ color:var(--navy); } .t-people{ color:var(--ok); }
+
+/* ============================ modules ============================ */
+.modules .cell{ padding:32px; transition:background-color .2s ease; }
+.modules .cell:hover{ background:var(--wash-2); }
+.modules .idx{ font-size:12px; color:var(--numeral); }
+.modules .cell svg.ico{ width:28px; height:28px; color:var(--navy); margin-top:16px; }
+.modules .cell h3{ margin-top:16px; font-size:18px; font-weight:500; }
+.modules .cell p{ margin-top:12px; font-size:13.5px; color:var(--muted); line-height:1.65; }
+.modules .cell .new{
+  display:inline-block; margin-top:14px; font-size:10.5px; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--blue); background:var(--blue-soft);
+  border:1px solid #BFDBFE; border-radius:999px; padding:3px 9px;
+}
+
+/* ============================ lifecycle ============================ */
+.lifecycle .cell{ padding:28px 24px; position:relative; }
+.lifecycle .n{ font-family:var(--display); font-size:13px; font-weight:600; color:var(--blue); letter-spacing:.1em; }
+.lifecycle .cell h3{ margin-top:12px; font-size:17px; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
+.lifecycle .cell p{ margin-top:10px; font-size:13.5px; color:var(--muted); line-height:1.6; }
+.lifecycle .bar{ position:absolute; left:0; right:0; top:0; height:3px; background:var(--blue); opacity:.18; }
+.lifecycle .cell:hover .bar{ opacity:1; transition:opacity .2s ease; }
+
+/* ============================ agent board ============================ */
+.board{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+@media (min-width:1024px){ .board{ grid-template-columns:minmax(320px,4fr) 6fr; } }
+.board-list{ background:var(--white); padding:0; }
+.board-group{ padding:14px 20px 10px; background:var(--wash-2); border-bottom:1px solid var(--line); }
+.board-group span{ font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted-2); }
+.agent-tab{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px;
+  width:100%; text-align:left; background:var(--white); border:0; cursor:pointer;
+  border-bottom:1px solid var(--line); padding:14px 20px; font-family:var(--body);
+  transition:background-color .18s ease;
+}
+.agent-tab:hover{ background:var(--wash-2); }
+.agent-tab[aria-selected="true"]{ background:var(--wash); box-shadow:inset 3px 0 0 var(--blue); }
+.agent-tab .num{ font-family:var(--mono); font-size:12px; color:var(--numeral); width:20px; }
+.agent-tab[aria-selected="true"] .num{ color:var(--blue); }
+.agent-tab .nm{ font-family:var(--display); font-size:15px; font-weight:500; color:var(--ink); line-height:1.3; }
+.agent-tab .kd{ display:block; margin-top:3px; font-family:var(--body); font-size:11.5px; color:var(--muted-2); font-weight:500; }
+.agent-tab .chev{ width:16px; height:16px; color:var(--numeral); }
+.agent-tab[aria-selected="true"] .chev{ color:var(--blue); }
+
+.board-panel{ background:var(--white); padding:32px; }
+@media (min-width:640px){ .board-panel{ padding:44px 48px; } }
+.board-panel .pnum{ font-family:var(--display); font-size:56px; font-weight:300; line-height:1; color:var(--numeral-xl); font-variant-numeric:tabular-nums; }
+.board-panel h3{ margin-top:8px; font-size:clamp(1.5rem,3vw,2rem); font-weight:400; }
+.pill{
+  display:inline-block; margin-top:14px; font-size:11px; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; padding:5px 11px; border-radius:999px;
+  background:var(--blue-soft); color:#1D4ED8; border:1px solid #BFDBFE;
+}
+.panel-grid{ margin-top:32px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line); grid-template-columns:1fr; }
+@media (min-width:768px){ .panel-grid{ grid-template-columns:repeat(2,1fr); } }
+.panel-grid .cell{ background:var(--white); padding:22px; }
+.panel-grid dt{ font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); }
+.panel-grid dd{ margin:10px 0 0; font-size:14.5px; color:var(--ink-2); line-height:1.65; }
+.gate-note{
+  margin-top:24px; display:flex; gap:12px; align-items:flex-start;
+  border-left:3px solid var(--gate); background:#FFFBEB; padding:16px 18px; border-radius:0 var(--radius) var(--radius) 0;
+}
+.gate-note svg{ width:18px; height:18px; color:var(--gate); flex:none; margin-top:2px; }
+.gate-note p{ font-size:14px; color:#78350F; line-height:1.6; }
+.gate-note strong{ font-weight:700; }
+
+/* ============================ control boundary ============================ */
+.boundary .cell{ padding:32px; }
+.boundary h3{ display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-family:var(--body); }
+.boundary h3 svg{ width:18px; height:18px; }
+.boundary li{ display:flex; gap:12px; padding:12px 0; border-bottom:1px dashed var(--line); font-size:14px; color:var(--ink-2); line-height:1.55; }
+.boundary li:last-child{ border-bottom:0; }
+.boundary li svg{ width:15px; height:15px; flex:none; margin-top:4px; }
+.b-auto h3, .b-auto li svg{ color:var(--ok); }
+.b-gate h3, .b-gate li svg{ color:var(--gate); }
+.b-never h3, .b-never li svg{ color:var(--stop); }
+.gates{ margin-top:56px; }
+.gates .cap{ font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); }
+.gate-chips{ margin-top:20px; display:flex; flex-wrap:wrap; gap:1px; background:var(--line); border:1px solid var(--line); }
+.gate-chips li{
+  background:var(--white); flex:1 1 200px; padding:16px 18px; display:flex; gap:12px; align-items:center;
+  font-size:13.5px; color:var(--ink-2); line-height:1.4;
+}
+.gate-chips .n{ font-family:var(--mono); font-size:11px; color:#fff; background:var(--navy); border-radius:999px; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; flex:none; }
+
+/* ============================ architecture ============================ */
+.arch .cell{ padding:28px 24px; }
+.arch .n{ font-family:var(--mono); font-size:12px; color:var(--blue); }
+.arch h3{ margin-top:12px; font-size:16px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+.arch p{ margin-top:10px; font-size:13.5px; color:var(--muted); line-height:1.6; }
+.railbar{
+  margin-top:1px; background:var(--navy); color:#CBD8EA; padding:20px 24px;
+  font-size:13px; line-height:1.7; display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center;
+}
+.railbar strong{ color:#fff; font-weight:700; letter-spacing:.16em; text-transform:uppercase; font-size:11px; }
+.railbar span{ display:inline-flex; align-items:center; gap:8px; }
+.railbar span::before{ content:""; width:5px; height:5px; border-radius:50%; background:#3B82F6; }
+.inputs{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.inputs li{ font-size:12.5px; font-family:var(--mono); color:var(--ink-2); background:var(--wash); border:1px solid var(--line); border-radius:var(--radius); padding:6px 12px; }
+
+/* ============================ stack ============================ */
+.stack .cell{ padding:28px; }
+.stack h3{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); font-family:var(--body); }
+.stack p{ margin-top:14px; font-size:14px; color:var(--muted); line-height:1.7; }
+.fns{ margin-top:56px; }
+.fn-chips{ margin-top:20px; display:flex; flex-wrap:wrap; gap:8px; }
+.fn-chips li{
+  font-family:var(--mono); font-size:12.5px; color:#DBEAFE; background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16); border-radius:var(--radius); padding:7px 12px;
+}
+.fn-chips li.is-gate{ color:#FDE68A; border-color:rgba(253,230,138,.45); background:rgba(253,230,138,.08); }
+.fn-note{ margin-top:24px; font-size:14px; color:#CBD8EA; line-height:1.7; max-width:70ch; border-left:3px solid #3B82F6; padding-left:16px; }
+
+/* ============================ security ============================ */
+.trace{ display:flex; flex-wrap:wrap; gap:1px; background:var(--line); border:1px solid var(--line); margin-top:24px; }
+.trace li{ background:var(--white); flex:1 1 150px; padding:18px 20px; }
+.trace .l{ font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); }
+.trace .d{ margin-top:8px; font-family:var(--display); font-size:16px; font-weight:500; color:var(--navy); }
+.pillars{ margin-top:56px; }
+.pillars .cell{ padding:26px; }
+.pillars h3{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); font-family:var(--body); }
+.pillars p{ margin-top:12px; font-size:14px; color:var(--muted); line-height:1.65; }
+.notes{ margin-top:48px; border:1px solid var(--line); border-left:3px solid var(--navy); background:var(--wash-2); padding:28px; border-radius:0 var(--radius) var(--radius) 0; }
+.notes .cap{ font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); }
+.notes li{ margin-top:14px; display:flex; gap:12px; font-size:14px; color:var(--ink-2); line-height:1.65; }
+.notes li svg{ width:16px; height:16px; color:var(--gate); flex:none; margin-top:4px; }
+
+/* ============================ roadmap ============================ */
+.phases .cell{ padding:32px 28px; }
+.phases .ph{ font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); }
+.phases h3{ margin-top:14px; font-size:20px; font-weight:500; }
+.phases .cell ul li{ margin-top:12px; display:flex; gap:10px; font-size:13.5px; color:var(--muted); line-height:1.55; }
+.phases .cell ul li::before{ content:"—"; color:var(--blue); flex:none; }
+.phases .wk{ margin-top:6px; font-family:var(--mono); font-size:12px; color:var(--numeral); }
+
+/* ============================ measurement ============================ */
+.metrics .cell{ padding:28px; }
+.metrics h3{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); font-family:var(--body); }
+.metrics li{ padding:10px 0; border-bottom:1px dashed var(--line); font-size:14px; color:var(--ink-2); }
+.metrics li:last-child{ border-bottom:0; }
+.formula{
+  margin-top:40px; border:1px solid var(--line); background:var(--white); padding:32px; border-radius:var(--radius);
+}
+.formula .cap{ font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); }
+.formula code{
+  display:block; margin-top:16px; font-family:var(--mono); font-size:clamp(13px,1.6vw,16px);
+  color:var(--navy); line-height:1.7; overflow-x:auto; white-space:nowrap; padding-bottom:8px;
+}
+.formula p{ margin-top:16px; font-size:14px; color:var(--muted); line-height:1.65; max-width:70ch; }
+
+/* ============================ closing CTA ============================ */
+.close{ text-align:center; }
+.close h2{ font-size:clamp(2rem,4.6vw,3.25rem); font-weight:300; line-height:1.1; }
+.close p{ margin:24px auto 0; max-width:62ch; color:#CBD8EA; font-size:17px; line-height:1.7; }
+.close .actions{ margin-top:40px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.diag{ margin-top:64px; display:grid; gap:1px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.14); text-align:left; grid-template-columns:1fr; }
+@media (min-width:768px){ .diag{ grid-template-columns:repeat(3,1fr); } }
+.diag .cell{ background:var(--navy-deep); padding:26px; }
+.diag h3{ font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#93B4E3; font-family:var(--body); }
+.diag li{ margin-top:12px; font-size:13.5px; color:#DCE6F3; line-height:1.55; display:flex; gap:10px; }
+.diag li::before{ content:"—"; color:#3B82F6; flex:none; }
+
+/* ============================ footer ============================ */
+.foot{ background:var(--white); border-top:1px solid var(--line); padding-block:40px; }
+.foot .shell{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted-2); }
+.foot a{ text-decoration:none; }
+.foot a:hover{ color:var(--ink); text-decoration:underline; }
+.foot .compliance{ display:flex; gap:18px; flex-wrap:wrap; }
+.skip{ position:absolute; left:-9999px; }
+.skip:focus{ left:var(--pad); top:8px; z-index:100; background:var(--navy); color:#fff; padding:10px 16px; border-radius:var(--radius); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <a class="brand" href="/" aria-label="PRISM Inc. home">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2 22 20H2L12 2Z" stroke="#0A2540" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 2v18" stroke="#2563EB" stroke-width="1.6"/>
+      </svg>
+      PRISM
+    </a>
+    <nav class="nav-main" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/products" aria-current="page">Products</a>
+      <a href="/services">Services</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="/contact">Request<span>&nbsp;Consultation</span></a>
+  </div>
+</header>
+
+<nav class="sectionnav" aria-label="On this page">
+  <div class="shell">
+    <ul>
+      <li><a href="#principle">Operating principle</a></li>
+      <li><a href="#modules">Platform modules</a></li>
+      <li><a href="#lifecycle">Case lifecycle</a></li>
+      <li><a href="#agents">AI case team</a></li>
+      <li><a href="#control">Human control</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#stack">Technology</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#roadmap">Rollout</a></li>
+      <li><a href="#measurement">Measurement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="shell">
+    <p class="overline">Product</p>
+    <h1>The PRISM IDR Platform, now with an AI case team.</h1>
+    <p class="hero-lede">
+      A complete operating system for No Surprises Act dispute management. Eight integrated
+      modules, ten business agents, one workspace, zero spreadsheets — built so AI reads and
+      prepares, deterministic rules calculate and control, and people approve every
+      consequential decision.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/contact">
+        Book a demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#agents">Explore the AI case team</a>
+    </div>
+
+    <ul class="rule-grid hero-stats cols-4-md2">
+      <li class="cell">
+        <div class="k">8</div>
+        <div class="v">Integrated platform modules, from claims ingest to immutable audit trail.</div>
+      </li>
+      <li class="cell">
+        <div class="k">10</div>
+        <div class="v">Business agents — eight operate individual cases, two strengthen the portfolio.</div>
+      </li>
+      <li class="cell">
+        <div class="k">10</div>
+        <div class="v">Mandatory human approval gates between preparation and any external action.</div>
+      </li>
+      <li class="cell">
+        <div class="k">0</div>
+        <div class="v">Autonomous submissions. External communication stays blocked until a reviewer signs.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== OPERATING PRINCIPLE ==================== -->
+<section class="section section--wash" id="principle">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The operating principle</p>
+      <h2>AI reads and prepares. Rules calculate and control. People approve.</h2>
+      <p class="section-lede">
+        Capacity should never come from giving software uncontrolled authority. PRISM separates
+        the three kinds of work so every dispute moves faster without loosening a single control.
+      </p>
+    </div>
+
+    <div class="rule-grid principle cols-3-md2" style="margin-top:48px">
+      <div class="cell">
+        <p class="tag t-ai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>
+          AI
+        </p>
+        <h3>Reads and prepares</h3>
+        <p>Reads EOBs, summarizes payer replies, drafts notices, assembles evidence packets and explains every recommendation with its source.</p>
+      </div>
+      <div class="cell">
+        <p class="tag t-rules">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/><path d="M15 18h1"/></svg>
+          Rules
+        </p>
+        <h3>Calculates and controls</h3>
+        <p>Controls eligibility checks, business-day deadlines, arithmetic, case state, retries and versioned decisions — deterministically, every time.</p>
+      </div>
+      <div class="cell">
+        <p class="tag t-people">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
+          People
+        </p>
+        <h3>Decide and approve</h3>
+        <p>Approve eligibility, settlements, filings, offers, rule changes and case closure. Named owners, recorded approvals, full audit history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PLATFORM MODULES ==================== -->
+<section class="section" id="modules">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The platform</p>
+      <h2>Eight integrated modules, one workspace.</h2>
+      <p class="section-lede">
+        The modules you already run the practice on. Each one now has an agent working inside it —
+        preparing the work, never authorizing it.
+      </p>
+    </div>
+  </div>
+  <div class="shell" style="margin-top:48px">
+    <div class="rule-grid modules cols-4-md2">
+      <article class="cell">
+        <div class="idx mono">01</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        <h3>Claims Ingest</h3>
+        <p>Pull EOBs and remits from your clearinghouse via SFTP, X12 835 parsing, or direct payer portal scraping.</p>
+        <span class="new">+ Agent 1 — Claim Intake</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">02</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m3 15 2 2 4-4"/></svg>
+        <h3>Eligibility Engine</h3>
+        <p>Auto-classifies each claim under NSA, state surprise law, ERISA, or out-of-scope — with the supporting CFR citations.</p>
+        <span class="new">+ Agent 2 — Eligibility &amp; Jurisdiction</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">03</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/></svg>
+        <h3>QPA Validator</h3>
+        <p>Compares the payer's QPA to FAIR Health, geographic medians, and historical contracted rates; flags low outliers for challenge.</p>
+        <span class="new">+ Agent 4 — QPA &amp; Underpayment</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">04</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+        <h3>Negotiation Workflow</h3>
+        <p>Auto-drafts Open Negotiation letters, tracks the 30-day clock, and escalates to IDR initiation on day 31.</p>
+        <span class="new">+ Agent 5 — Negotiation Copilot</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">05</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>IDRE Submission</h3>
+        <p>Generates compliant IDR filings with credible information packets tuned to your service line and IDRE history.</p>
+        <span class="new">+ Agent 6 — IDR Evidence</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">06</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        <h3>Recovery Analytics</h3>
+        <p>Win rate, average uplift, payer-level performance, denial trends — exportable to your BI tool.</p>
+        <span class="new">+ Agents 7 &amp; 10 — Intelligence &amp; Reporting</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">07</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+        <h3>Deadline Sentinel</h3>
+        <p>Federal IDR deadlines are unforgiving. PRISM tracks every clock and routes overdue items before they expire.</p>
+        <span class="new">+ Agent 3 — Deadline &amp; Workflow</span>
+      </article>
+      <article class="cell">
+        <div class="idx mono">08</div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>Audit Trail</h3>
+        <p>Every action, document, and timestamp is preserved in an immutable, BAA-covered record.</p>
+        <span class="new">+ Agents 8 &amp; 9 — Reconciliation &amp; Regulatory</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LIFECYCLE ==================== -->
+<section class="section section--wash" id="lifecycle">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Case lifecycle</p>
+      <h2>One dispute, one controlled lifecycle.</h2>
+      <p class="section-lede">
+        A single case record carries the claim from intake to collected cash. No handoffs between
+        disconnected systems, no case closed before the money actually arrives.
+      </p>
+    </div>
+    <ol class="rule-grid lifecycle cols-5-sm2" style="margin-top:48px">
+      <li class="cell"><span class="bar" aria-hidden="true"></span><div class="n mono">01</div><h3>Intake</h3><p>EOB, ERA, claim and support files, scanned and matched to one verified case.</p></li>
+      <li class="cell"><span class="bar" aria-hidden="true"></span><div class="n mono">02</div><h3>Qualify</h3><p>Eligibility, jurisdiction, QPA and the economics that decide whether to pursue.</p></li>
+      <li class="cell"><span class="bar" aria-hidden="true"></span><div class="n mono">03</div><h3>Negotiate</h3><p>The 30-business-day Open Negotiation window, tracked and drafted end to end.</p></li>
+      <li class="cell"><span class="bar" aria-hidden="true"></span><div class="n mono">04</div><h3>IDR</h3><p>Initiation, IDRE selection, cited evidence and the final offer submission.</p></li>
+      <li class="cell"><span class="bar" aria-hidden="true"></span><div class="n mono">05</div><h3>Collect</h3><p>Determination, payment, remittance reconciliation and client reporting.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== AI CASE TEAM ==================== -->
+<section class="section" id="agents">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The AI case team</p>
+      <h2>Ten business agents. Every one of them has a supervisor.</h2>
+      <p class="section-lede">
+        Eight agents operate individual cases; two strengthen regulation and reporting across the
+        whole portfolio. Select an agent to see exactly what it does, where it works, what it
+        changes for the practice, and the approval gate it can never cross.
+      </p>
+    </div>
+  </div>
+
+  <div class="shell" style="margin-top:48px">
+    <div class="board">
+      <div class="board-list">
+        <div class="board-group"><span>Case agents &middot; 1&ndash;8</span></div>
+        <div role="tablist" aria-label="PRISM AI case team" aria-orientation="vertical">
+
+          <button class="agent-tab" role="tab" id="agent-tab-1" aria-controls="agent-panel-1" aria-selected="true" tabindex="0">
+            <span class="num">01</span>
+            <span class="nm">Claim Intake Agent<span class="kd">AI-assisted</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-2" aria-controls="agent-panel-2" aria-selected="false" tabindex="-1">
+            <span class="num">02</span>
+            <span class="nm">Eligibility &amp; Jurisdiction Agent<span class="kd">Deterministic-first</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-3" aria-controls="agent-panel-3" aria-selected="false" tabindex="-1">
+            <span class="num">03</span>
+            <span class="nm">Deadline &amp; Workflow Agent<span class="kd">Deterministic-first</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-4" aria-controls="agent-panel-4" aria-selected="false" tabindex="-1">
+            <span class="num">04</span>
+            <span class="nm">QPA &amp; Underpayment Agent<span class="kd">Rules + analytics</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-5" aria-controls="agent-panel-5" aria-selected="false" tabindex="-1">
+            <span class="num">05</span>
+            <span class="nm">Negotiation Copilot<span class="kd">AI drafting</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-6" aria-controls="agent-panel-6" aria-selected="false" tabindex="-1">
+            <span class="num">06</span>
+            <span class="nm">IDR Evidence Agent<span class="kd">Grounded AI</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-7" aria-controls="agent-panel-7" aria-selected="false" tabindex="-1">
+            <span class="num">07</span>
+            <span class="nm">Payer &amp; IDRE Intelligence<span class="kd">Advisory analytics</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-8" aria-controls="agent-panel-8" aria-selected="false" tabindex="-1">
+            <span class="num">08</span>
+            <span class="nm">Payment Reconciliation Agent<span class="kd">Deterministic-first</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+        </div>
+        <div class="board-group"><span>Portfolio agents &middot; 9&ndash;10</span></div>
+        <div role="tablist" aria-label="PRISM portfolio agents" aria-orientation="vertical">
+
+          <button class="agent-tab" role="tab" id="agent-tab-9" aria-controls="agent-panel-9" aria-selected="false" tabindex="-1">
+            <span class="num">09</span>
+            <span class="nm">Regulatory Intelligence Agent<span class="kd">AI research + control</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+          <button class="agent-tab" role="tab" id="agent-tab-10" aria-controls="agent-panel-10" aria-selected="false" tabindex="-1">
+            <span class="num">10</span>
+            <span class="nm">Reporting Agent<span class="kd">Validated reporting</span></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+
+        </div>
+      </div>
+
+      <div class="board-panel">
+
+        <div role="tabpanel" id="agent-panel-1" aria-labelledby="agent-tab-1" tabindex="0">
+          <div class="pnum">01</div>
+          <h3>Claim Intake Agent</h3>
+          <span class="pill">AI-assisted</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Classifies inbound files, extracts claim fields, matches service lines across documents and flags anything missing or inconsistent.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Case entry</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Less re-keying and fewer intake errors, because the case record is verified before anyone works it.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> A person resolves every low-confidence field before the case advances.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-2" aria-labelledby="agent-tab-2" tabindex="0" hidden>
+          <div class="pnum">02</div>
+          <h3>Eligibility &amp; Jurisdiction Agent</h3>
+          <span class="pill">Deterministic-first</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Applies the active federal, state, plan, network, duplicate and batching rules, and returns the reason and evidence behind each result.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Before action</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Fewer ineligible filings and a defensible written reason attached to every eligibility call.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> A specialist confirms eligibility and jurisdiction before any external step.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-3" aria-labelledby="agent-tab-3" tabindex="0" hidden>
+          <div class="pnum">03</div>
+          <h3>Deadline &amp; Workflow Agent</h3>
+          <span class="pill">Deterministic-first</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Runs business-day calendars, case state, reminders, retries and escalations across the entire dispute lifecycle.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Whole lifecycle</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Fewer preventable deadline losses, and queues that surface work before it becomes urgent.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> A named owner resolves any uncertain or contested date.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-4" aria-labelledby="agent-tab-4" tabindex="0" hidden>
+          <div class="pnum">04</div>
+          <h3>QPA &amp; Underpayment Agent</h3>
+          <span class="pill">Rules + analytics</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Compares the payment received, the payer's QPA, licensed benchmarks, fees and expected recovery to score each opportunity.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Prioritization</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Specialists work the best opportunities first, with the finance assumptions visible on screen.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> Finance owns the assumptions; they stay visible and versioned, never buried in a model.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-5" aria-labelledby="agent-tab-5" tabindex="0" hidden>
+          <div class="pnum">05</div>
+          <h3>Negotiation Copilot</h3>
+          <span class="pill">AI drafting</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Drafts Open Negotiation notices, summarizes payer replies and compares settlement options side by side.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Open Negotiation</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Faster, more consistent negotiation without losing the specialist's judgement.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> An authorized person sends every notice and accepts every settlement.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-6" aria-labelledby="agent-tab-6" tabindex="0" hidden>
+          <div class="pnum">06</div>
+          <h3>IDR Evidence Agent</h3>
+          <span class="pill">Grounded AI</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Builds cited statements, exhibit indexes, attachment checks and reviewer checklists for the credible information packet.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>IDR preparation</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Fewer missing or unsupported facts in front of the certified IDR entity.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> A specialist approves the evidence and the submission itself.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-7" aria-labelledby="agent-tab-7" tabindex="0" hidden>
+          <div class="pnum">07</div>
+          <h3>Payer &amp; IDRE Intelligence</h3>
+          <span class="pill">Advisory analytics</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Finds patterns by payer, specialty, code, geography, offer level and IDRE across comparable historical outcomes.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Strategy</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Better strategy from comparable outcomes instead of instinct.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> Insights remain advisory and sourced &mdash; they never auto-apply to a live case.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-8" aria-labelledby="agent-tab-8" tabindex="0" hidden>
+          <div class="pnum">08</div>
+          <h3>Payment Reconciliation Agent</h3>
+          <span class="pill">Deterministic-first</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Matches determinations to remittances, then flags late, partial or missing payment against the amount awarded.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>After decision</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>No case closes before the cash actually arrives, and disputed balances stay visible.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> Finance confirms every disputed balance before write-off or closure.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-9" aria-labelledby="agent-tab-9" tabindex="0" hidden>
+          <div class="pnum">09</div>
+          <h3>Regulatory Intelligence Agent</h3>
+          <span class="pill">AI research + control</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Summarizes CMS and state changes, then proposes rule, SOP and template updates with the source text attached.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Compliance</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>A faster, controlled response to regulatory change instead of a scramble.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> Compliance approves every production rule, SOP or template change.</p>
+          </div>
+        </div>
+
+        <div role="tabpanel" id="agent-panel-10" aria-labelledby="agent-tab-10" tabindex="0" hidden>
+          <div class="pnum">10</div>
+          <h3>Reporting Agent</h3>
+          <span class="pill">Validated reporting</span>
+          <dl class="panel-grid">
+            <div class="cell"><dt>What it does</dt><dd>Creates client, operations and executive reporting from validated data only, with the definitions shown.</dd></div>
+            <div class="cell"><dt>Where it works</dt><dd>Portfolio reporting</dd></div>
+            <div class="cell" style="grid-column:1/-1"><dt>What it changes</dt><dd>Faster, clearer visibility for clients and leadership from one validated source.</dd></div>
+          </dl>
+          <div class="gate-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p><strong>Approval gate.</strong> High-risk narratives are reviewed before they leave the building.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HUMAN CONTROL ==================== -->
+<section class="section section--wash" id="control">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Human control</p>
+      <h2>A clear automation boundary.</h2>
+      <p class="section-lede">
+        The safest design draws a hard line between automatic preparation and consequential
+        decisions. Here is exactly where PRISM draws it.
+      </p>
+    </div>
+
+    <div class="rule-grid boundary cols-3-md2" style="margin-top:48px">
+      <div class="cell b-auto">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Automatic preparation
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Receive, scan, classify and match files</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Detect duplicates and missing fields</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calculate clocks, balances and opportunity</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Draft notices, summaries and evidence</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Create queues, reminders and audit events</li>
+        </ul>
+      </div>
+      <div class="cell b-gate">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Recorded approval
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Confirm eligibility and jurisdiction</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Send a notice or payer response</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Accept, reject or counter a settlement</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Initiate IDR and select an IDRE</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Submit evidence, offers or rule changes</li>
+        </ul>
+      </div>
+      <div class="cell b-never">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+          Never autonomous
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Invent evidence, dates, codes or amounts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Change live rules without approval</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Send PHI to consumer AI accounts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Scrape licensed data or bypass controls</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Autonomously submit to the CMS Gateway</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gates">
+      <p class="cap">Ten mandatory human gates across the case</p>
+      <ul class="gate-chips">
+        <li><span class="n">1</span>Resolve uncertain data</li>
+        <li><span class="n">2</span>Confirm eligibility</li>
+        <li><span class="n">3</span>Send negotiation notice</li>
+        <li><span class="n">4</span>Approve settlement</li>
+        <li><span class="n">5</span>Initiate IDR</li>
+        <li><span class="n">6</span>Select IDRE</li>
+        <li><span class="n">7</span>Approve evidence</li>
+        <li><span class="n">8</span>Submit final offer</li>
+        <li><span class="n">9</span>Activate rule change</li>
+        <li><span class="n">10</span>Close the case</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ARCHITECTURE ==================== -->
+<section class="section" id="architecture">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Architecture</p>
+      <h2>A single case record coordinates everything.</h2>
+      <p class="section-lede">
+        Agents, deterministic services, reviewers and official channels all read and write one
+        case record — and everything they do runs along the same control rail.
+      </p>
+    </div>
+
+    <ul class="inputs" aria-label="Inputs">
+      <li>Secure portal</li><li>SFTP / API</li><li>X12 835 / 837</li><li>Approved mailbox</li><li>Payment feeds</li>
+    </ul>
+
+    <div class="rule-grid arch cols-6-md2" style="margin-top:24px">
+      <div class="cell"><div class="n">01</div><h3>Normalize</h3><p>Malware scan, OCR, X12 parsing, document matching, confidence scoring and duplicate checks.</p></div>
+      <div class="cell"><div class="n">02</div><h3>Control</h3><p>Versioned rules, business-day calendars, durable workflow, arithmetic, retries and state recovery.</p></div>
+      <div class="cell"><div class="n">03</div><h3>AI case team</h3><p>Ten agents using only allow-listed internal functions and permission-aware knowledge.</p></div>
+      <div class="cell"><div class="n">04</div><h3>Human workbench</h3><p>Source viewer, exception queue, approvals, role controls, comments and named ownership.</p></div>
+      <div class="cell"><div class="n">05</div><h3>Approved action</h3><p>Payer communication, certified IDR entity workflow and supervised Gateway package preparation.</p></div>
+      <div class="cell"><div class="n">06</div><h3>Outcome</h3><p>Determination, remittance matching, cash aging, client reporting and the learning loop.</p></div>
+    </div>
+
+    <div class="railbar">
+      <strong>Control rail</strong>
+      <span>Tenant isolation</span><span>SSO + MFA + RBAC</span><span>Encryption</span>
+      <span>Secrets management</span><span>Audit history</span><span>PHI-safe logs</span><span>Manual fallback</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TECHNOLOGY ==================== -->
+<section class="section section--navy" id="stack">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Technology</p>
+      <h2>Agents don't get open access. They get a gateway.</h2>
+      <p class="section-lede">
+        Every action an agent takes passes through an allow-listed internal function. There is no
+        general-purpose tool use, no free-form browsing, and no path to an external system that
+        skips the approval record.
+      </p>
+    </div>
+
+    <div class="stack cols-6-md2" style="display:grid;gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);margin-top:48px">
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">Intake &amp; connections</h3><p style="color:#CBD8EA">Secure portal &middot; SFTP &middot; authenticated APIs &middot; X12 835/837 parser &middot; approved mailbox &middot; malware scan &middot; OCR</p></div>
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">Case &amp; workflow</h3><p style="color:#CBD8EA">PostgreSQL &middot; encrypted object storage &middot; Temporal or Camunda &middot; task queues &middot; self-hosted n8n for low-risk notifications</p></div>
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">Rules &amp; services</h3><p style="color:#CBD8EA">Python / FastAPI &middot; versioned decision tables &middot; business-day calendar &middot; finance service &middot; idempotency and retries</p></div>
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">AI &amp; knowledge</h3><p style="color:#CBD8EA">Enterprise LLM endpoint &middot; model gateway &middot; permission-aware RAG &middot; CMS guidance &middot; SOPs &middot; prompt registry &middot; evaluations</p></div>
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">Benchmarks &amp; analytics</h3><p style="color:#CBD8EA">Licensed FAIR Health data &middot; CMS public-use files &middot; internal outcomes &middot; dbt &middot; BI dashboards</p></div>
+      <div class="cell" style="background:#071A2E"><h3 style="color:#93B4E3">Security &amp; operations</h3><p style="color:#CBD8EA">Okta or Entra ID &middot; SSO &middot; MFA &middot; RBAC &middot; KMS / Vault &middot; DLP &middot; SIEM &middot; OpenTelemetry &middot; PHI-safe logs</p></div>
+    </div>
+
+    <div class="fns">
+      <p class="overline">Sample allow-listed internal functions</p>
+      <ul class="fn-chips">
+        <li>ingest_document</li><li>extract_eob_fields</li><li>run_eligibility_rules</li>
+        <li>calculate_deadlines</li><li>compare_qpa</li><li>score_opportunity</li>
+        <li>draft_notice</li><li>assemble_evidence_packet</li><li>validate_packet</li>
+        <li>query_payer_history</li><li>match_remittance</li>
+        <li class="is-gate">record_approval</li><li>write_audit_event</li>
+        <li class="is-gate">prepare_gateway_package</li>
+      </ul>
+      <p class="fn-note">
+        External communication stays blocked until <code style="font-family:var(--mono);color:#FDE68A">record_approval</code>
+        confirms both the authorized reviewer and the current case version.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECURITY ==================== -->
+<section class="section" id="security">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Security &amp; compliance</p>
+      <h2>PHI-safe and audit-ready by design.</h2>
+      <p class="section-lede">
+        Security is part of the workflow, not a layer bolted on after automation. Every important
+        action carries the same six-part trace.
+      </p>
+    </div>
+
+    <ul class="trace" aria-label="Required trace for every important action">
+      <li><div class="l">Source</div><div class="d">Document + page</div></li>
+      <li><div class="l">Case version</div><div class="d">Immutable</div></li>
+      <li><div class="l">Rule version</div><div class="d">Pinned</div></li>
+      <li><div class="l">Model + prompt</div><div class="d">Registered</div></li>
+      <li><div class="l">Reviewer</div><div class="d">Named user</div></li>
+      <li><div class="l">Timestamp</div><div class="d">Signed</div></li>
+    </ul>
+
+    <div class="rule-grid pillars cols-6-md2">
+      <div class="cell"><h3>Identity</h3><p>SSO, MFA, named users, RBAC and least-privilege access.</p></div>
+      <div class="cell"><h3>Data</h3><p>Encryption in transit and at rest, tenant isolation and field-level permissions.</p></div>
+      <div class="cell"><h3>Vendors</h3><p>BAA and covered-service review for every vendor that handles ePHI.</p></div>
+      <div class="cell"><h3>AI policy</h3><p>No PRISM data used for training, controlled retention, no consumer AI accounts.</p></div>
+      <div class="cell"><h3>Operations</h3><p>PHI-safe logs, DLP, SIEM, monitoring, manual fallback and a kill switch.</p></div>
+      <div class="cell"><h3>Change control</h3><p>Rule, model, prompt and SOP versions with test results and rollback.</p></div>
+    </div>
+
+    <div class="notes">
+      <p class="cap">Important operating notes</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>PRISM publicly states HIPAA compliant and SOC 2 ready. Readiness is not the same as a completed independent audit.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>HHS guidance treats a cloud provider handling ePHI as a business associate, requiring a HIPAA-compliant BAA.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>CMS states the late-2026 IDR Gateway will permit only U.S.-based users. Submission stays supervised by authorized U.S.-based staff.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="section section--wash" id="roadmap">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Rollout</p>
+      <h2>Value in four controlled stages.</h2>
+      <p class="section-lede">
+        Start with reliable intake and deadline control, then add drafting, intelligence and
+        payment automation. Nothing ships to production before it passes a shadow-mode accuracy gate.
+      </p>
+    </div>
+    <ol class="rule-grid phases cols-4-md2" style="margin-top:48px">
+      <li class="cell">
+        <div class="ph">Phase 1</div><div class="wk">Weeks 1&ndash;2</div>
+        <h3>Map, measure and design</h3>
+        <ul><li>Process map and baseline</li><li>Data and PHI inventory</li><li>Approval matrix and pilot scope</li><li>Architecture and acceptance tests</li></ul>
+      </li>
+      <li class="cell">
+        <div class="ph">Phase 2</div><div class="wk">Weeks 3&ndash;8</div>
+        <h3>Control the case</h3>
+        <ul><li>Document intake and extraction</li><li>Verified case record</li><li>Deadline and exception queues</li><li>Shadow-mode accuracy review</li></ul>
+      </li>
+      <li class="cell">
+        <div class="ph">Phase 3</div><div class="wk">Weeks 9&ndash;14</div>
+        <h3>Prepare the dispute</h3>
+        <ul><li>Negotiation copilot</li><li>Evidence packet assembly</li><li>Source citation and validation</li><li>Human approval workspace</li></ul>
+      </li>
+      <li class="cell">
+        <div class="ph">Phase 4</div><div class="wk">Weeks 15&ndash;24</div>
+        <h3>Learn, collect and report</h3>
+        <ul><li>Payer and IDRE intelligence</li><li>Payment reconciliation</li><li>Client and executive reporting</li><li>Controlled expansion by segment</li></ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== MEASUREMENT ==================== -->
+<section class="section" id="measurement">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">Measurement</p>
+      <h2>ROI measured in capacity and collected cash.</h2>
+      <p class="section-lede">
+        We use your baseline to prove value. No percentage is promised before the pilot is
+        measured, and every agent runs in shadow mode against specialist decisions first.
+      </p>
+    </div>
+
+    <div class="rule-grid metrics cols-4-md2" style="margin-top:48px">
+      <div class="cell"><h3>Operational</h3><ul><li>Minutes per claim</li><li>Cases per specialist</li><li>Correction rate</li><li>Deadline misses</li><li>Queue aging</li></ul></div>
+      <div class="cell"><h3>Quality</h3><ul><li>Eligibility precision</li><li>Ineligible filing rate</li><li>Unsupported statement rate</li><li>Human override rate</li><li>Packet rework</li></ul></div>
+      <div class="cell"><h3>Financial</h3><ul><li>Incremental net recovery</li><li>Recovery per claim</li><li>Collected-cash aging</li><li>Fees and operating cost</li><li>Unpaid determination balance</li></ul></div>
+      <div class="cell"><h3>Client</h3><ul><li>Cycle time</li><li>Report delivery speed</li><li>Case visibility</li><li>Payer scorecard quality</li><li>Exception response time</li></ul></div>
+    </div>
+
+    <div class="formula">
+      <p class="cap">ROI framework</p>
+      <code>( labour capacity gained + incremental recovery + prevented losses &minus; platform cost ) &divide; platform cost</code>
+      <p>
+        Tracked with finance-approved definitions, collection timing and material exclusions.
+        Agents run in shadow mode first: their output is compared to specialist decisions, every
+        material error is investigated, and scope expands only after accuracy, security and
+        workflow acceptance gates pass.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLOSING CTA ==================== -->
+<section class="section section--navy close">
+  <div class="shell">
+    <h2>See PRISM resolve a live dispute.</h2>
+    <p>
+      A 45-minute working session with our IDR strategists. Bring a real EOB and we'll walk
+      through eligibility, QPA validation and the recommended offer in front of you &mdash; then
+      show you the same case running through the agent workbench.
+    </p>
+    <div class="actions">
+      <a class="btn btn-invert" href="/contact">
+        Schedule demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.35)" href="/contact">Approve a 30-day diagnostic</a>
+    </div>
+
+    <div class="diag">
+      <div class="cell">
+        <h3>PRISM provides</h3>
+        <ul><li>100&ndash;500 historical cases, de-identified first where possible</li><li>Source documents, actions, outcomes and payments</li><li>SOPs, templates, approval rules and user roles</li><li>System, integration and security documentation</li></ul>
+      </div>
+      <div class="cell">
+        <h3>The pilot selects</h3>
+        <ul><li>One specialty</li><li>One or two payers</li><li>One or two states</li><li>A clear eligibility, volume and recovery profile</li></ul>
+      </div>
+      <div class="cell">
+        <h3>Diagnostic output</h3>
+        <ul><li>Verified process and data map</li><li>Pilot backlog and acceptance tests</li><li>Security and BAA decision log</li><li>Phased build plan and ROI baseline</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <div>&copy; 2026 PRISM Inc. &middot; <a href="mailto:info@prism.inc">info@prism.inc</a> &middot; United States</div>
+    <div class="compliance"><span>HIPAA compliant</span><span>SOC 2 ready</span><a href="/contact">Request consultation</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ---------------- Agent board: ARIA tabs with roving tabindex ---------------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
+
+  function select(idx, focus) {
+    tabs.forEach(function (tab, i) {
+      var on = i === idx;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (panel, i) {
+      panel.hidden = i !== idx;
+    });
+    if (focus) tabs[idx].focus();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { select(i, false); });
+    tab.addEventListener("keydown", function (e) {
+      var next = null;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") next = (i + 1) % tabs.length;
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = tabs.length - 1;
+      if (next === null) return;
+      e.preventDefault();
+      select(next, true);
+    });
+  });
+
+  /* ---------------- Section nav: scroll-spy ---------------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".sectionnav a"));
+  var targets = links
+    .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window && targets.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-140px 0px -65% 0px", threshold: 0 });
+    targets.forEach(function (t) { spy.observe(t); });
+  }
+
+  /* ---------------- Reveal on scroll (progressive, motion-safe) ---------------- */
+  if (!reduced.matches && "IntersectionObserver" in window) {
+    var blocks = Array.prototype.slice.call(
+      document.querySelectorAll(".section-head, .rule-grid, .board, .formula, .notes, .gates, .diag, .railbar, .fns")
+    );
+    blocks.forEach(function (el) { el.classList.add("reveal"); });
+    var reveal = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+    blocks.forEach(function (el) { reveal.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
