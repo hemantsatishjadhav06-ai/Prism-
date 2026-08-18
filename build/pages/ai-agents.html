@@ -1,0 +1,218 @@
+<main id="main">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="shell">
+    <p class="overline">The AI case team</p>
+    <h1>What the AI does.<br /><span class="accent">What you decide.</span></h1>
+    <p class="hero-lede">
+      One dispute, five stages, ten agents, ten human approval gates. Read it left to right:
+      at every stage the AI prepares the work, a named person signs it off, and only then does
+      anything move. Nothing skips a gate.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/contact">
+        Book a working demo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="/products">See the platform modules</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE FLOW ==================== -->
+<section class="section section--wash" id="flow">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The flow</p>
+      <h2>One dispute, end to end.</h2>
+      <p class="section-lede">
+        Every column is a stage of the case. Blue is what the AI prepares. Amber is the human
+        signature that unlocks the next step. Green is what comes out the other side.
+      </p>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#2563EB"></i> AI prepares</span>
+      <span><i style="background:#B45309"></i> A person approves</span>
+      <span><i style="background:#047857"></i> Result</span>
+    </div>
+
+    <div class="flow" style="margin-top:24px" data-testid="agent-flow">
+
+      <div class="flow-stage">
+        <div class="flow-head"><div class="n">STAGE 01</div><h3>Intake</h3></div>
+        <div class="flow-band band-ai">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>AI prepares &middot; Agent 1</p>
+          <ul>
+            <li>Reads EOBs, remits and support files</li>
+            <li>Extracts claim fields and matches service lines</li>
+            <li>Flags anything missing, duplicated or low-confidence</li>
+          </ul>
+        </div>
+        <div class="flow-band band-human">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Gate 1 &middot; you decide</p>
+          <ul><li>Resolve every uncertain field before the case advances</li></ul>
+        </div>
+        <div class="flow-band band-out">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Result</p>
+          <ul><li>One verified case record, no re-keying</li></ul>
+        </div>
+      </div>
+
+      <div class="flow-stage">
+        <div class="flow-head"><div class="n">STAGE 02</div><h3>Qualify</h3></div>
+        <div class="flow-band band-ai">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>AI prepares &middot; Agents 2, 3, 4</p>
+          <ul>
+            <li>Applies federal, state, plan and network rules, with the reason attached</li>
+            <li>Starts the business-day clocks and the exception queue</li>
+            <li>Compares QPA to benchmarks and scores expected recovery</li>
+          </ul>
+        </div>
+        <div class="flow-band band-human">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Gates 2&ndash;3 &middot; you decide</p>
+          <ul><li>Confirm eligibility and jurisdiction</li><li>Own any contested date</li></ul>
+        </div>
+        <div class="flow-band band-out">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Result</p>
+          <ul><li>A prioritized, eligible case on a live clock</li></ul>
+        </div>
+      </div>
+
+      <div class="flow-stage">
+        <div class="flow-head"><div class="n">STAGE 03</div><h3>Negotiate</h3></div>
+        <div class="flow-band band-ai">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>AI prepares &middot; Agent 5</p>
+          <ul>
+            <li>Drafts the Open Negotiation notice</li>
+            <li>Summarizes payer replies as they land</li>
+            <li>Compares settlement options side by side</li>
+          </ul>
+        </div>
+        <div class="flow-band band-human">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Gates 4&ndash;5 &middot; you decide</p>
+          <ul><li>Send the notice</li><li>Accept, reject or counter a settlement</li></ul>
+        </div>
+        <div class="flow-band band-out">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Result</p>
+          <ul><li>Settlement &mdash; or escalation to IDR on day 31</li></ul>
+        </div>
+      </div>
+
+      <div class="flow-stage">
+        <div class="flow-head"><div class="n">STAGE 04</div><h3>IDR</h3></div>
+        <div class="flow-band band-ai">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>AI prepares &middot; Agents 6, 7</p>
+          <ul>
+            <li>Builds cited statements, exhibit index and attachment checks</li>
+            <li>Surfaces comparable outcomes by payer, code and IDRE</li>
+            <li>Runs the reviewer checklist before anything is submitted</li>
+          </ul>
+        </div>
+        <div class="flow-band band-human">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Gates 6&ndash;8 &middot; you decide</p>
+          <ul><li>Initiate IDR and select the IDRE</li><li>Approve the evidence</li><li>Submit the final offer</li></ul>
+        </div>
+        <div class="flow-band band-out">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Result</p>
+          <ul><li>A filed dispute with a defensible packet</li></ul>
+        </div>
+      </div>
+
+      <div class="flow-stage">
+        <div class="flow-head"><div class="n">STAGE 05</div><h3>Collect</h3></div>
+        <div class="flow-band band-ai">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg>AI prepares &middot; Agents 8, 10</p>
+          <ul>
+            <li>Matches the determination to the remittance</li>
+            <li>Flags late, partial or missing payment</li>
+            <li>Builds client, operations and executive reporting</li>
+          </ul>
+        </div>
+        <div class="flow-band band-human">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Gates 9&ndash;10 &middot; you decide</p>
+          <ul><li>Confirm disputed balances</li><li>Close the case &mdash; never before the cash lands</li></ul>
+        </div>
+        <div class="flow-band band-out">
+          <p class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Result</p>
+          <ul><li>Cash received, reconciled and reported</li></ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="railbar" style="margin-top:24px">
+      <strong>Running underneath</strong>
+      <span>Agent 9 watches CMS and state rule changes &mdash; compliance approves every production change</span>
+      <span>Agent 3 holds every clock, on business days</span>
+      <span>Every action writes source, case version, rule version, model, reviewer and timestamp</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE TEN AGENTS ==================== -->
+<section class="section" id="roster">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The roster</p>
+      <h2>Ten agents, and the human who signs for each.</h2>
+      <p class="section-lede">
+        Eight agents work a single case. Two work across the whole portfolio. Every row ends the
+        same way &mdash; with a person.
+      </p>
+    </div>
+
+    <div class="rule-grid cols-2" style="margin-top:48px">
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">01 &middot; AI-assisted</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Claim Intake</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Documents in, verified case out.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; a person resolves low-confidence fields.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">02 &middot; Deterministic-first</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Eligibility &amp; Jurisdiction</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Rules applied with the reason and the evidence.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; a specialist confirms eligibility.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">03 &middot; Deterministic-first</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Deadline &amp; Workflow</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Business-day clocks, queues and escalations.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; a named owner resolves uncertain dates.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">04 &middot; Rules + analytics</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">QPA &amp; Underpayment</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Economics, benchmarks and expected recovery.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; finance owns the assumptions, visibly.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">05 &middot; AI drafting</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Negotiation Copilot</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Notices, reply summaries and settlement options.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; an authorized person sends and accepts.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">06 &middot; Grounded AI</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">IDR Evidence</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Cited statements, exhibits and checklists.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; a specialist approves the submission.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">07 &middot; Advisory analytics</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Payer &amp; IDRE Intelligence</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Patterns by payer, code, geography and IDRE.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; advisory only, never auto-applied.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">08 &middot; Deterministic-first</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Payment Reconciliation</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Determination matched to the cash received.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; finance confirms disputed balances.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">09 &middot; Portfolio &middot; AI research</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Regulatory Intelligence</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">CMS and state changes, with proposed SOP updates.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; compliance approves every change.</p></div>
+      <div class="cell" style="padding:24px"><div class="mono" style="font-size:12px;color:var(--blue)">10 &middot; Portfolio &middot; Validated</div><h3 style="margin-top:10px;font-size:18px;font-weight:500">Reporting</h3><p style="margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6">Client, operations and executive visibility.</p><p style="margin-top:12px;font-size:13px;color:var(--gate);font-weight:600">Gate &mdash; high-risk narratives are reviewed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NEVER AUTONOMOUS ==================== -->
+<section class="section section--navy" id="limits">
+  <div class="shell">
+    <div class="section-head">
+      <p class="overline">The hard limits</p>
+      <h2>Five things the AI will never do.</h2>
+      <p class="section-lede">
+        These are enforced in the tool gateway, not in a prompt. An agent cannot reach an external
+        system at all until an approval is recorded against the current case version.
+      </p>
+    </div>
+    <ul class="rule-grid cols-5-sm2" style="margin-top:48px;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.14)">
+      <li class="cell" style="background:#071A2E;padding:24px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><p style="margin-top:14px;font-size:14px;color:#DCE6F3;line-height:1.6">Invent evidence, dates, codes or amounts</p></li>
+      <li class="cell" style="background:#071A2E;padding:24px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><p style="margin-top:14px;font-size:14px;color:#DCE6F3;line-height:1.6">Change live rules without approval</p></li>
+      <li class="cell" style="background:#071A2E;padding:24px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><p style="margin-top:14px;font-size:14px;color:#DCE6F3;line-height:1.6">Send PHI to consumer AI accounts</p></li>
+      <li class="cell" style="background:#071A2E;padding:24px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><p style="margin-top:14px;font-size:14px;color:#DCE6F3;line-height:1.6">Scrape licensed data or bypass controls</p></li>
+      <li class="cell" style="background:#071A2E;padding:24px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FCA5A5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><p style="margin-top:14px;font-size:14px;color:#DCE6F3;line-height:1.6">Autonomously submit to the CMS Gateway</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="section band">
+  <div class="shell">
+    <h2>Watch one real case walk the whole flow.</h2>
+    <p>Bring a live EOB to a 45-minute working session. We'll take it from intake to recommended offer on screen, stopping at every gate so you can see exactly where your team signs.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/contact">
+        Book the session
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="/products">Read the full platform detail</a>
+    </div>
+  </div>
+</section>
+
+</main>

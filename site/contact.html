@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0A2540" />
+<title>Contact PRISM — let's talk recovery</title>
+<meta name="description" content="Tell us about your practice and current IDR pain points. We respond within one business day with a recommended next step." />
+<link rel="canonical" href="https://prism.inc/contact" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="PRISM Inc." />
+<meta property="og:title" content="Contact PRISM — let's talk recovery" />
+<meta property="og:description" content="Tell us about your practice and current IDR pain points. We respond within one business day with a recommended next step." />
+<meta property="og:image" content="https://prism.inc/assets/prism-logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/assets/prism-logo.png" />
+<link rel="apple-touch-icon" href="/assets/prism-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/prism.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="shell">
+    <a class="brand" href="/" data-testid="navbar-logo-link" aria-label="PRISM Inc. — home">
+      <img src="/assets/prism-logo.png" width="480" height="270" alt="PRISM" />
+    </a>
+    <nav class="nav-main" aria-label="Primary">
+        <a href="/" data-testid="nav-home">Home</a>
+        <a href="/products" data-testid="nav-products">Products</a>
+        <a href="/ai-agents" data-testid="nav-ai-agents">AI Agents</a>
+        <a href="/services" data-testid="nav-services">Services</a>
+        <a href="/about" data-testid="nav-about">About</a>
+        <a href="/contact" data-testid="nav-contact" aria-current="page">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="/contact" data-testid="navbar-cta-button">Request Consultation</a>
+    <button class="navtoggle" data-nav-toggle type="button" aria-expanded="false"
+            aria-controls="nav-drawer" aria-label="Open menu" data-testid="navbar-mobile-toggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="navdrawer" id="nav-drawer">
+    <div class="shell">
+        <a href="/" data-testid="mobile-nav-home">Home</a>
+        <a href="/products" data-testid="mobile-nav-products">Products</a>
+        <a href="/ai-agents" data-testid="mobile-nav-ai-agents">AI Agents</a>
+        <a href="/services" data-testid="mobile-nav-services">Services</a>
+        <a href="/about" data-testid="mobile-nav-about">About</a>
+        <a href="/contact" data-testid="mobile-nav-contact" aria-current="page">Contact</a>
+      <a class="btn btn-primary" href="/contact">Request Consultation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="shell">
+    <p class="overline">Contact</p>
+    <h1>Let's talk <span class="accent">recovery.</span></h1>
+    <p class="hero-lede">
+      Tell us about your practice and current IDR pain points. We'll respond within one business
+      day with a recommended next step.
+    </p>
+  </div>
+</section>
+
+<section class="section section--wash">
+  <div class="shell">
+    <div class="split">
+      <div class="split-media" style="order:2;background:transparent;border:0;padding:0">
+        <form class="formwrap" data-testid="contact-form" id="contact-form" novalidate
+              data-endpoint="https://billing-hub-206.emergent.host/api/contact">
+          <div class="fieldrow">
+            <div class="field">
+              <label for="name">Full name <span aria-hidden="true">*</span></label>
+              <input id="name" name="name" data-testid="input-name" placeholder="Jane Doe" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Work email <span aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" data-testid="input-email" placeholder="jane@practice.com" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="company">Company / Practice</label>
+              <input id="company" name="company" data-testid="input-company" placeholder="Atlantic Emergency Physicians" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" data-testid="input-phone" placeholder="(555) 123-4567" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="service_interest">Service of interest</label>
+            <select id="service_interest" name="service_interest" data-testid="select-service">
+              <option value="">Select a service</option>
+              <option>IDR Software Platform</option>
+              <option>White-Glove IDR Consulting</option>
+              <option>Open Negotiation Management</option>
+              <option>Federal IDR Representation</option>
+              <option>Appeals &amp; Underpayment Recovery</option>
+              <option>Training &amp; Advisory</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">How can we help? <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" data-testid="input-message" required
+                      placeholder="Tell us about your claim volume, current IDR challenges, and what success looks like..."></textarea>
+          </div>
+
+          <p class="formnote" id="form-status" role="status" aria-live="polite"></p>
+
+          <div class="formfoot">
+            <p>We respect your PHI. No medical information should be shared via this form.</p>
+            <button class="btn btn-primary" type="submit" data-testid="contact-submit-button">
+              Send inquiry
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <aside style="order:1">
+        <p class="overline">Reach us directly</p>
+        <div style="margin-top:32px">
+          <div class="contactcard">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+            <div>
+              <div class="l">Email</div>
+              <div class="v"><a href="mailto:info@prism.inc" data-testid="contact-email-link">info@prism.inc</a></div>
+            </div>
+          </div>
+          <div class="contactcard">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div>
+              <div class="l">Location</div>
+              <div class="v">United States</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;border:1px solid var(--line);background:var(--white);padding:24px">
+          <p class="overline">What happens next</p>
+          <ol class="steps" style="margin-top:16px">
+            <li><span class="n">01</span>We review your inquiry within 1 business day.</li>
+            <li><span class="n">02</span>30-minute discovery call with an IDR specialist.</li>
+            <li><span class="n">03</span>BAA signed; we analyze a sample of EOBs.</li>
+            <li><span class="n">04</span>Recovery diagnostic + recommended engagement.</li>
+          </ol>
+        </div>
+
+        <div style="margin-top:24px;border:1px solid var(--line);border-left:3px solid var(--navy);background:var(--wash-2);padding:24px">
+          <p class="overline">Bring this to the call</p>
+          <ul style="margin-top:16px">
+            <li style="padding:6px 0;font-size:14px;color:var(--ink-2);line-height:1.6">&mdash; A sample of denied or underpaid out-of-network EOBs</li>
+            <li style="padding:6px 0;font-size:14px;color:var(--ink-2);line-height:1.6">&mdash; Your current payer mix</li>
+            <li style="padding:6px 0;font-size:14px;color:var(--ink-2);line-height:1.6">&mdash; Rough monthly claims volume</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="sitefoot" data-testid="site-footer">
+  <div class="shell">
+    <div class="footgrid">
+      <div>
+        <span class="footlogo"><img src="/assets/prism-logo.png" width="480" height="270" alt="PRISM" /></span>
+        <p class="blurb">
+          Payment Resolution &amp; IDR System Management. We help healthcare providers recover
+          what they're owed under the No Surprises Act through proprietary software and
+          white-glove IDR consulting.
+        </p>
+      </div>
+      <div>
+        <p class="overline">Navigate</p>
+        <ul>
+          <li><a href="/" data-testid="footer-link-home">Home</a></li>
+          <li><a href="/products" data-testid="footer-link-products">Products</a></li>
+          <li><a href="/ai-agents" data-testid="footer-link-ai-agents">AI Agents</a></li>
+          <li><a href="/services" data-testid="footer-link-services">Services</a></li>
+          <li><a href="/about" data-testid="footer-link-about">About</a></li>
+          <li><a href="/contact" data-testid="footer-link-contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="overline">Contact</p>
+        <ul class="contact">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><a href="mailto:info@prism.inc" data-testid="footer-email">info@prism.inc</a></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span>United States</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footbar">
+      <p>&copy; 2026 PRISM Inc. All rights reserved. HIPAA compliant. SOC 2 ready.</p>
+      <div><span>Privacy Policy</span><span>Terms of Service</span><span>Compliance</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/prism.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# Render Blueprint — prism.inc
+#
+# Deliberately a Static Site with NO build command. site/ is committed, so a
+# deploy is "copy these files to the CDN". There is no toolchain to break, no
+# dependency to resolve, and no build step that can fail. Rebuild locally with
+# `python3 build.py` and commit the result.
+#
+# Deploy: Render Dashboard -> Blueprints -> New Blueprint Instance -> pick this
+# repo. Or point an existing Static Site at this repo with:
+#   Publish directory: site
+#   Build command:     (leave empty)
+
+services:
+  - type: web
+    name: prism-inc
+    runtime: static
+    staticPublishPath: ./site
+    buildCommand: ""
+    pullRequestPreviewsEnabled: true
+
+    # Clean URLs. Render already falls back to <path>.html, but declaring the
+    # routes makes the mapping explicit and survives changes to that default.
+    routes:
+      - type: rewrite
+        source: /products
+        destination: /products.html
+      - type: rewrite
+        source: /ai-agents
+        destination: /ai-agents.html
+      - type: rewrite
+        source: /services
+        destination: /services.html
+      - type: rewrite
+        source: /about
+        destination: /about.html
+      - type: rewrite
+        source: /contact
+        destination: /contact.html
+
+    headers:
+      # HTML must never be served stale — a deploy has to be visible immediately.
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+      # Hashed-by-content assets are safe to cache hard.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains
+      - path: /*
+        name: Permissions-Policy
+        value: geolocation=(), microphone=(), camera=()
